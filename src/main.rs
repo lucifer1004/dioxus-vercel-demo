@@ -7,7 +7,6 @@ fn main() {
 }
 
 fn app(cx: Scope) -> Element {
-    let mut counter = 0;
     let button_counter = use_state(&cx, || 0);
 
     cx.render(rsx! {
@@ -20,10 +19,6 @@ fn app(cx: Scope) -> Element {
             margin: "auto",
             border: "1px dashed lightblue",
             border_radius: "20%",
-            onclick: move |_| {
-                counter += 1;
-                log::debug!("div clicked {counter} times!");
-            },
             h1 {
                 color: "lightblue",
                 "Dioxus demo",
