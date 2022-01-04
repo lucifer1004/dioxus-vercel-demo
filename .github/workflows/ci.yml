@@ -29,7 +29,7 @@ jobs:
           command: install
           args: trunk
       - name: Build web pages
-        run: trunk build --production
+        run: trunk build --release
       - name: Deploy to Vercel
         uses: amondnet/vercel-action@v20
         with:
