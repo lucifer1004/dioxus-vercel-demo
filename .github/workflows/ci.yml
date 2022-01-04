@@ -1,0 +1,41 @@
+# We could use `@actions-rs/cargo` Action ability to automatically install `cross` tool
+# in order to compile our application for some unusual targets.
+
+name: Build static pages and upload to Vercel
+
+on:
+  push:
+    branches: [main]
+  pull_request_target:
+    types: [opened, synchronize, reopened]
+
+jobs:
+  vercel:
+    runs-on: ubuntu-latest
+    if: "!contains(github.event.head_commit.message, '[skip ci]')"
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Install Rust toolchain
+        uses: actions-rs/toolchain@v1
+        with:
+          toolchain: stable
+          target: wasm32-unknown-unknown
+          override: true
+      - name: Install trunk
+        uses: actions-rs/cargo@v1
+        with:
+          use-cross: true
+          command: install
+          args: trunk
+      - name: Build web pages
+        run: trunk build --production
+      - name: Deploy to Vercel
+        uses: amondnet/vercel-action@v20
+        with:
+          vercel-token: ${{ secrets.VERCEL_TOKEN }} # Required
+          github-token: ${{ secrets.GITHUB_TOKEN }} #Optional 
+          vercel-args: '--prod' #Optional
+          vercel-org-id: ${{ secrets.ORG_ID }}  #Required
+          vercel-project-id: ${{ secrets.PROJECT_ID }} #Required 
+          working-directory: ./

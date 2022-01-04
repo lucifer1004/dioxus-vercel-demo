@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "alias": "dioxus-demo.gabriel-wu.com",
+  "github": {
+    "enabled": false
+  },
+  "builds": [
+    { "src": "./dist/**", "use": "@now/static" }
+  ]
+}
