@@ -55,7 +55,7 @@ jobs:
           working-directory: ./
 
       - name: Deploy to Vercel (preview)
-        if: "github.event_name != 'push' || endsWith(github.ref, 'main')" # Deploy to preview otherwise
+        if: "github.event_name != 'push' || !endsWith(github.ref, 'main')" # Deploy to preview otherwise
         uses: amondnet/vercel-action@v20
         with:
           vercel-token: ${{ secrets.VERCEL_TOKEN }} # Required
