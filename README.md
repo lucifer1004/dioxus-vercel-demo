@@ -1,6 +1,6 @@
 # Dioxus demo
 
-This demo shows how to use the Dioxus library to build a static web application and deploy it to Vercel.
+This demo shows how to use [Dioxus](https://github.com/DioxusLabs/dioxus) to build a static web application and deploy it to Vercel.
 
 ## Local development
 
