@@ -23,7 +23,8 @@ fn app(cx: Scope) -> Element {
                 "Dioxus demo",
             },
             img {
-                src: "https://www.rust-lang.org/logos/rust-logo-blk.svg"
+                src: "https://www.rust-lang.org/logos/rust-logo-blk.svg",
+                alt: "Rust logo",
             },
             p {
                 "counter: {button_counter}",
